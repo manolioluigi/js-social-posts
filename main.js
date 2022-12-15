@@ -59,6 +59,10 @@ const posts = [
 let card = '';
 
 posts.forEach((element) => {
+    const date = element.created;
+    const [year, month, day] = date.split('-');
+    const dataFinale = [month, day, year].join('/');
+
     card += `
         <div class="post">
             <div class="post__header">
@@ -68,7 +72,7 @@ posts.forEach((element) => {
                     </div>
                     <div class="post-meta__data">
                         <div class="post-meta__author">${element.author.name}</div>
-                        <div class="post-meta__time">${element.created}</div>
+                        <div class="post-meta__time">${dataFinale}</div>
                     </div>                    
                 </div>
             </div>
