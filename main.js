@@ -68,7 +68,7 @@ posts.forEach((element) => {
                     </div>
                     <div class="post-meta__data">
                         <div class="post-meta__author">${element.author.name}</div>
-                        <div class="post-meta__time">${element.author.created}</div>
+                        <div class="post-meta__time">${element.created}</div>
                     </div>                    
                 </div>
             </div>
