@@ -79,7 +79,7 @@ posts.forEach((element) => {
             <div class="post__footer">
                 <div class="likes js-likes">
                     <div class="likes__cta">
-                        <a class="like-button  js-like-button" href="#" data-postid="1">
+                        <a class="like-button  js-like-button" href="#" data-postid="${element.id}">
                             <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
                             <span class="like-button__label">Mi Piace</span>
                         </a>
@@ -98,14 +98,32 @@ creaCard.innerHTML += card;
 
 //Array likes
 
-let bottoneLike = document.querySelector('.like-button');
+const bottoneLike = document.getElementsByClassName('js-like-button');
+const arrayLike = [];
 
+for (let i=0; i<bottoneLike.length; i++){
 
-bottoneLike.addEventListener(`click`, function(){
+    bottoneLike[i].addEventListener('click', function(){
 
-    let likesId = document.querySelectorAll('js-likes-counter').value;
-    console.log(likesId);
+        const postId = this.dataset.postid;
+        const likes = document.getElementById(`like-counter-${postId}`);
+        const likesNumber = parseInt(likes.innerText);
 
+        if(arrayLike.includes(postId)){
+            likes.innerText = likesNumber-1;
+            
+            const index = arrayLike.indexOf(postId);
+            if(index > -1){
+                arrayLike.splice(index,1);
+            }
+            bottoneLike[i].classList.remove("like-button--liked");
+            console.log(arrayLike);
+        }else{
+            likes.innerText = likesNumber+1;
+            arrayLike.push(postId);
+            console.log(arrayLike);
+            bottoneLike[i].classList.add("like-button--liked");
+        }
+
+    });
 }
-);
-
