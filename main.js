@@ -62,13 +62,33 @@ posts.forEach((element) => {
     const date = element.created;
     const [year, month, day] = date.split('-');
     const dataFinale = [month, day, year].join('/');
+    let immagine;
+
+    //Bonus 2
+
+    if(element.author.image == null){
+        //prendiamo le iniziali
+        let text = element.author.name;
+        const arrayNome = text.split(" ");
+        let nome = arrayNome[0];
+        let cognome = arrayNome[1];
+        let letteraNome = nome.charAt(0);
+        let letteraCognome = cognome.charAt(0); 
+        //stampiamo nel dom
+        immagine = `<h1 class="profile-pic color-black">${letteraNome}${letteraCognome}</h1>`
+    }else{
+        immagine = `<img class="profile-pic" src="${element.author.image}" alt="Phil Mangione">                    
+                   `
+    }
+
+
 
     card += `
         <div class="post">
             <div class="post__header">
                 <div class="post-meta">                    
                     <div class="post-meta__icon">
-                        <img class="profile-pic" src="${element.author.image}" alt="Phil Mangione">                    
+                        ${immagine}
                     </div>
                     <div class="post-meta__data">
                         <div class="post-meta__author">${element.author.name}</div>
@@ -131,3 +151,6 @@ for (let i=0; i<bottoneLike.length; i++){
 
     });
 }
+
+
+
